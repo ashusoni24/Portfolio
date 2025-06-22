@@ -12,7 +12,12 @@ import ThemeToggle from "@/Components/ThemeToggle";
 import { extracurriculars } from "@/Data/Extracircular";
 
 export default function Home() {
-  const { isDark } = useTheme();
+  const { isDark, hasMounted } = useTheme();
+
+  if (!hasMounted) {
+    // Optionally, you can return a loading spinner here
+    return null;
+  }
 
   return (
     <>
