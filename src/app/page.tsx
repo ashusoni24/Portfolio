@@ -9,6 +9,7 @@ import { Mail, Github, Twitter } from "lucide-react";
 import { FaDiscord } from "react-icons/fa";
 import { useTheme } from "@/contexts/ThemeContext";
 import ThemeToggle from "@/Components/ThemeToggle";
+import { extracurriculars } from "@/Data/Extracircular";
 
 export default function Home() {
   const { isDark } = useTheme();
@@ -42,7 +43,7 @@ export default function Home() {
               alt={personalData.Name}
               width={100}
               height={100}
-              className={`w-50 h-59 object-cover rounded-xl border-2 shadow-md ${
+              className={`w-55 h-60 object-cover rounded-xl border-2 shadow-md ${
                 isDark ? "border-gray-700" : "border-gray-300"
               }`}
             />
@@ -57,7 +58,7 @@ export default function Home() {
               <div className={`space-y-2 leading-relaxed max-w-xl ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                 <p>{personalData.aboutMe}</p>
                 <p>
-                  I&apos;m a {personalData.CurrentYear} {personalData.Degree} student at {personalData.College}, and a {personalData.role.join(", ")}.
+                  I&apos;m a {personalData.CurrentYear} {personalData.Degree} student at {personalData.College} and a {personalData.role.join(" ")}.
                 </p>
               </div>
             </div>
@@ -90,7 +91,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="mb-12">
+        <section className="mb-10">
           <h2
             className={`text-xl mb-6 font-dotz ${
               isDark ? "text-white" : "text-black"
@@ -108,6 +109,49 @@ export default function Home() {
                 live={project.live}
                 sourceCode={project.sourceCode}
               />
+            ))}
+          </div>
+        </section>
+
+        {/* Extracurricular Activities Section */}
+        <section className="mb-12">
+          <h2
+            className={`text-xl mb-6 font-dotz ${
+              isDark ? "text-white" : "text-black"
+            }`}
+          >
+            Extracurricular Activities
+          </h2>
+          <div className="space-y-6">
+            {extracurriculars.map((activity, idx) => (
+              <div key={idx} className="pb-2 border-b"
+                style={{
+                  borderColor: isDark ? "#1f2937" : "#d1d5db" // Tailwind's gray-800 / gray-300
+                }}
+              >
+                <h3
+                  className={`
+                    text-base font-medium transition-colors mb-3
+                    ${isDark
+                      ? "text-white"
+                      : "text-gray-900"
+                    }
+                  `}
+                >
+                  {activity.title}
+                </h3>
+                <p
+                  className={`
+                    text-sm leading-relaxed transition-colors
+                    ${isDark
+                      ? "text-gray-400"
+                      : "text-gray-600"
+                    }
+                  `}
+                >
+                  {activity.description}
+                </p>
+              </div>
             ))}
           </div>
         </section>
